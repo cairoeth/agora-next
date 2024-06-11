@@ -30,11 +30,46 @@ export default class TenantContractFactory {
         return ensContracts(isProd);
       case TENANT_NAMESPACES.OPTIMISM:
         return opContracts(isProd);
+      case TENANT_NAMESPACES.SCROLL:
+        return scrollContracts(isProd);
       default:
         throw new Error(`Invalid namespace: ${namespace}`);
     }
   }
 }
+
+/**
+ * TODO: replace once we've deployed proper scroll contracts
+ */
+const scrollContracts = (isProd: boolean): TenantContracts => {
+  return {
+    // TOKEN
+    token: new TenantContract<ITokenContract>({
+      abi: EtherfiToken__factory.abi,
+      address: "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72" as `0x${string}`,
+      chain: mainnet,
+      contract: EtherfiToken__factory.connect(
+        "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
+        ethProvider
+      ),
+    }),
+    // GOVERNOR
+    governor: new TenantContract<IGovernorContract>({
+      abi: OptimismGovernor__factory.abi,
+      address: isProd
+        ? "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67"
+        : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
+      contract: OptimismGovernor__factory.connect(
+        isProd
+          ? "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67"
+          : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
+        provider
+      ),
+      chain: mainnet,
+      optionBudgetChangeDate: new Date("2024-02-21T12:00:00"),
+    }),
+  };
+};
 
 const ensContracts = (isProd: boolean): TenantContracts => {
   return {
