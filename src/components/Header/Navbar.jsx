@@ -10,6 +10,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const tenant = Tenant.current();
 
+  // Hide the navbar when on the claim page
+  if (pathname === "/claim") {
+    return null;
+  }
+
   return (
     <HStack className={styles.main_nav}>
       {tenant.ui.toggle("proposals") &&
