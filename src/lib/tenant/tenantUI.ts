@@ -45,6 +45,9 @@ type TenantUIParams = {
   pages?: UIPage[];
   title: string;
   toggles?: UIToggle[];
+  customization?: {
+    primaryColor: string;
+  };
 };
 
 export class TenantUI {
@@ -58,6 +61,9 @@ export class TenantUI {
   private _pages?: UIPage[];
   private _title: string;
   private _toggles?: UIToggle[];
+  private _customization?: {
+    primaryColor: string;
+  };
 
   private _linksCache: { [key: string]: UILink | undefined } = {};
   private _pagesCache: { [key: string]: UIPage | undefined } = {};
@@ -74,6 +80,7 @@ export class TenantUI {
     pages,
     title,
     toggles,
+    customization,
   }: TenantUIParams) {
     this._color = color;
     this._delegates = delegates;
@@ -85,6 +92,7 @@ export class TenantUI {
     this._pages = pages;
     this._title = title;
     this._toggles = toggles;
+    this._customization = customization;
   }
 
   public get color(): string {
@@ -113,6 +121,10 @@ export class TenantUI {
 
   public get organization(): UIOrganization | undefined {
     return this._organization;
+  }
+
+  public get customization(): { primaryColor: string } | undefined {
+    return this._customization;
   }
 
   public link(name: string): UILink | undefined {

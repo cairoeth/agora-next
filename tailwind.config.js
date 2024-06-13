@@ -238,6 +238,7 @@ module.exports = {
           900: "#FF007A",
           positive: "#FF007A1A",
         },
+        agoraPrimary: "var(--agora-primary)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
