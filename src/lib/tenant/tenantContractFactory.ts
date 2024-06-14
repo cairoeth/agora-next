@@ -9,7 +9,7 @@ import {
   ProposalTypesConfigurator__factory,
 } from "@/lib/contracts/generated";
 
-import provider, { ethProvider } from "@/app/lib/provider";
+import provider, { ethProvider, sepoliaProvider } from "@/app/lib/provider";
 
 import { BaseContract } from "ethers";
 import { ITokenContract } from "@/lib/contracts/common/interfaces/ITokenContract";
@@ -46,27 +46,33 @@ const scrollContracts = (isProd: boolean): TenantContracts => {
     // TOKEN
     token: new TenantContract<ITokenContract>({
       abi: EtherfiToken__factory.abi,
-      address: "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72" as `0x${string}`,
-      chain: mainnet,
+      address: isProd ? "0x0" : "0xca91CA159317218F67eCbDaBf4Fd778801551906",
+      chain: isProd ? mainnet : sepolia,
       contract: EtherfiToken__factory.connect(
-        "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
-        ethProvider
+        isProd ? "0x0" : "0xca91CA159317218F67eCbDaBf4Fd778801551906",
+        isProd ? ethProvider : sepoliaProvider
       ),
     }),
     // GOVERNOR
     governor: new TenantContract<IGovernorContract>({
       abi: OptimismGovernor__factory.abi,
-      address: isProd
-        ? "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67"
-        : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
+      address: isProd ? "0x0" : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
       contract: OptimismGovernor__factory.connect(
-        isProd
-          ? "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67"
-          : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
-        provider
+        isProd ? "0x0" : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
+        isProd ? ethProvider : sepoliaProvider
       ),
-      chain: mainnet,
+      chain: isProd ? mainnet : sepolia,
       optionBudgetChangeDate: new Date("2024-02-21T12:00:00"),
+    }),
+    // TOKEN DISTRIBUTOR (MERKLE TREE AIRDROP)
+    tokenDistributor: new TenantContract<BaseContract>({
+      abi: ProposalTypesConfigurator__factory.abi,
+      address: isProd ? "0x0" : "0x4d3933fe4F1a9e8Ddb68237a7C84932Ca2E86B99",
+      chain: isProd ? mainnet : sepolia,
+      contract: ProposalTypesConfigurator__factory.connect(
+        isProd ? "0x0" : "0x4d3933fe4F1a9e8Ddb68237a7C84932Ca2E86B99",
+        isProd ? ethProvider : sepoliaProvider
+      ),
     }),
   };
 };

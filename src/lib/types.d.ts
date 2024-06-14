@@ -11,6 +11,7 @@ export type TenantNamespace =
 export type TenantContracts = {
   token: TenantContract<ITokenContract>;
   governor: TenantContract<IGovernorContract>;
+  tokenDistributor?: TenantContract<BaseContract>;
   alligator?: TenantContract<IAlligatorContract>;
   proposalTypesConfigurator?: TenantContract<BaseContract>;
 };
