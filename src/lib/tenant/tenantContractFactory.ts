@@ -4,6 +4,9 @@ import { TenantContract } from "@/lib/tenant/tenantContract";
 import {
   AlligatorOPV5__factory,
   EtherfiToken__factory,
+  L2GovToken__factory,
+  ScrollGovernor__factory,
+  TokenDistributor__factory,
   OptimismGovernor__factory,
   OptimismToken__factory,
   ProposalTypesConfigurator__factory,
@@ -45,19 +48,19 @@ const scrollContracts = (isProd: boolean): TenantContracts => {
   return {
     // TOKEN
     token: new TenantContract<ITokenContract>({
-      abi: EtherfiToken__factory.abi,
+      abi: L2GovToken__factory.abi,
       address: isProd ? "0x0" : "0xca91CA159317218F67eCbDaBf4Fd778801551906",
       chain: isProd ? mainnet : sepolia,
-      contract: EtherfiToken__factory.connect(
+      contract: L2GovToken__factory.connect(
         isProd ? "0x0" : "0xca91CA159317218F67eCbDaBf4Fd778801551906",
         isProd ? ethProvider : sepoliaProvider
       ),
     }),
     // GOVERNOR
     governor: new TenantContract<IGovernorContract>({
-      abi: OptimismGovernor__factory.abi,
+      abi: ScrollGovernor__factory.abi,
       address: isProd ? "0x0" : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
-      contract: OptimismGovernor__factory.connect(
+      contract: ScrollGovernor__factory.connect(
         isProd ? "0x0" : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
         isProd ? ethProvider : sepoliaProvider
       ),
@@ -66,10 +69,10 @@ const scrollContracts = (isProd: boolean): TenantContracts => {
     }),
     // TOKEN DISTRIBUTOR (MERKLE TREE AIRDROP)
     tokenDistributor: new TenantContract<BaseContract>({
-      abi: ProposalTypesConfigurator__factory.abi,
+      abi: TokenDistributor__factory.abi,
       address: isProd ? "0x0" : "0x4d3933fe4F1a9e8Ddb68237a7C84932Ca2E86B99",
       chain: isProd ? mainnet : sepolia,
-      contract: ProposalTypesConfigurator__factory.connect(
+      contract: TokenDistributor__factory.connect(
         isProd ? "0x0" : "0x4d3933fe4F1a9e8Ddb68237a7C84932Ca2E86B99",
         isProd ? ethProvider : sepoliaProvider
       ),
