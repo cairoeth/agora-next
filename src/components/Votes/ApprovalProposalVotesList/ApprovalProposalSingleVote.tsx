@@ -79,7 +79,7 @@ export default function ApprovalProposalSingleVote({ vote }: { vote: Vote }) {
                 </>
               )}
             </div>
-            <div className={"font-semibold text-gray-700"}>
+            <div className={"font-semibold text-theme-700"}>
               <TokenAmountDisplay amount={weight} />
             </div>
           </HStack>
