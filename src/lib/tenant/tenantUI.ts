@@ -46,7 +46,16 @@ type TenantUIParams = {
   title: string;
   toggles?: UIToggle[];
   customization?: {
-    primaryColor: string;
+    theme50?: string;
+    theme100?: string;
+    theme200?: string;
+    theme300?: string;
+    theme400?: string;
+    theme500?: string;
+    theme600?: string;
+    theme700?: string;
+    theme800?: string;
+    theme900?: string;
   };
 };
 
@@ -62,9 +71,17 @@ export class TenantUI {
   private _title: string;
   private _toggles?: UIToggle[];
   private _customization?: {
-    primaryColor: string;
+    theme50?: string;
+    theme100?: string;
+    theme200?: string;
+    theme300?: string;
+    theme400?: string;
+    theme500?: string;
+    theme600?: string;
+    theme700?: string;
+    theme800?: string;
+    theme900?: string;
   };
-
   private _linksCache: { [key: string]: UILink | undefined } = {};
   private _pagesCache: { [key: string]: UIPage | undefined } = {};
   private _togglesCache: { [key: string]: UIToggle | undefined } = {};
@@ -123,7 +140,20 @@ export class TenantUI {
     return this._organization;
   }
 
-  public get customization(): { primaryColor: string } | undefined {
+  public get customization():
+    | {
+        theme50?: string;
+        theme100?: string;
+        theme200?: string;
+        theme300?: string;
+        theme400?: string;
+        theme500?: string;
+        theme600?: string;
+        theme700?: string;
+        theme800?: string;
+        theme900?: string;
+      }
+    | undefined {
     return this._customization;
   }
 
