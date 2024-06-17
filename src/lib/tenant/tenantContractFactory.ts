@@ -1,6 +1,5 @@
 import { TenantContracts, type TenantNamespace } from "@/lib/types";
 import { TenantContract } from "@/lib/tenant/tenantContract";
-
 import {
   AlligatorOPV5__factory,
   EtherfiToken__factory,
@@ -18,6 +17,8 @@ import { BaseContract } from "ethers";
 import { ITokenContract } from "@/lib/contracts/common/interfaces/ITokenContract";
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
 import { IAlligatorContract } from "@/lib/contracts/common/interfaces/IAlligatorContract";
+import { IL2GovTokenContract } from "@/lib/contracts/common/interfaces/IL2GovTokenContract";
+import { IScrollGovernorContract } from "@/lib/contracts/common/interfaces/IScrollGovernorContract";
 import { TENANT_NAMESPACES } from "@/lib/constants";
 import { mainnet, optimism, sepolia } from "viem/chains";
 
@@ -47,7 +48,7 @@ export default class TenantContractFactory {
 const scrollContracts = (isProd: boolean): TenantContracts => {
   return {
     // TOKEN
-    token: new TenantContract<ITokenContract>({
+    token: new TenantContract<IL2GovTokenContract>({
       abi: L2GovToken__factory.abi,
       address: isProd ? "0x0" : "0xca91CA159317218F67eCbDaBf4Fd778801551906",
       chain: isProd ? mainnet : sepolia,
@@ -57,7 +58,7 @@ const scrollContracts = (isProd: boolean): TenantContracts => {
       ),
     }),
     // GOVERNOR
-    governor: new TenantContract<IGovernorContract>({
+    governor: new TenantContract<IScrollGovernorContract>({
       abi: ScrollGovernor__factory.abi,
       address: isProd ? "0x0" : "0xca83e6932cf4f03cdd6238be0ffcf2fe97854f67",
       contract: ScrollGovernor__factory.connect(
