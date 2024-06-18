@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroller";
 import { VStack } from "../../Layout/Stack";
 import { DelegateActions } from "../DelegateCard/DelegateActions";
 import { DelegateProfileImage } from "../DelegateCard/DelegateProfileImage";
-import styles from "./DelegateCardList.module.scss";
 import { DialogProvider } from "@/components/Dialogs/DialogProvider/DialogProvider";
 import { Delegate } from "@/app/api/common/delegates/delegate";
 import useIsAdvancedUser from "@/app/lib/hooks/useIsAdvancedUser";
@@ -69,7 +68,7 @@ export default function DelegateCardList({
     <DialogProvider>
       {/* @ts-ignore */}
       <InfiniteScroll
-        className={styles.infinite_scroll}
+        className="grid grid-flow-row grid-cols-[repeat(auto-fit,_23rem)] sm:grid-cols-[repeat(3,_23rem)] justify-around sm:justify-between py-4 gap-4 sm:gap-8"
         hasMore={meta.hasNextPage}
         pageStart={1}
         loadMore={loadMore}
@@ -97,21 +96,26 @@ export default function DelegateCardList({
             <div
               key={delegate.address}
               className={cn(
-                styles.link,
+                "flex flex-col",
                 isDelegatesCitizensFetching || isDelegatesFiltering
                   ? "animate-pulse"
                   : ""
               )}
             >
               <Link href={`/delegates/${delegate.address}`}>
-                <VStack gap={4} className={styles.link_container}>
+                <VStack
+                  gap={4}
+                  className="h-full p-6 rounded-xl bg-white border border-theme-300 shadow-newDefault"
+                >
                   <VStack gap={4} justifyContent="justify-center">
                     <DelegateProfileImage
                       address={delegate.address}
                       votingPower={delegate.votingPower}
                       citizen={delegate.citizen}
                     />
-                    <p className={styles.summary}>{truncatedStatement}</p>
+                    <p className="text-base leading-normal min-h-[48px] break-words text-gray-600 overflow-hidden line-clamp-2">
+                      {truncatedStatement}
+                    </p>
                   </VStack>
                   <div className="min-h-[24px]">
                     <DelegateActions
