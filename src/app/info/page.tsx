@@ -59,7 +59,7 @@ export default async function Page() {
               <div className="text-sm text-stone-600 font-medium">
                 Phase 1 – Governance initiation
               </div>
-              <div className="w-[5px] h-[5px] rounded-full bg-stone-300 relative -left-[27px] -top-4"></div>
+              <div className="w-[5px] h-[5px] rounded-full bg-line relative -left-[27px] -top-4"></div>
               <div>
                 Over the next weeks, we will be gradually bringing voters into
                 Ether.fi’s governance by launching offchain voting on Snapshot,
@@ -71,7 +71,7 @@ export default async function Page() {
                 Phase 2 – Transition to onchain governance
               </div>
               <div>
-                <div className="w-[5px] h-[5px] rounded-full bg-stone-300 relative -left-[27px] -top-4"></div>
+                <div className="w-[5px] h-[5px] rounded-full bg-line relative -left-[27px] -top-4"></div>
                 As the community grows over the next months, we will be fully
                 deploying the Agora onchain governor, and granting the community
                 access control to Ether.fi’s protocol and treasury. This is
@@ -83,7 +83,7 @@ export default async function Page() {
               <div className="text-sm text-stone-600 font-medium">
                 Phase 3 – Full Ossification
               </div>
-              <div className="w-[5px] h-[5px] rounded-full bg-stone-300 relative -left-[27px] -top-4"></div>
+              <div className="w-[5px] h-[5px] rounded-full bg-line relative -left-[27px] -top-4"></div>
               <div>
                 In the long run, we’ll work on fully automating and ossifying
                 governance function so that Ether.fi can stand the test of time
