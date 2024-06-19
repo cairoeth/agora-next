@@ -45,7 +45,7 @@ export default function TopIssues({
                 </VStack>
 
                 <VStack>
-                  <div className="text-xs font-medium text-[#66676b]">
+                  <div className="text-xs font-medium text-tertiary">
                     {issueDef.title}
                   </div>
                   <div>{issue.value}</div>

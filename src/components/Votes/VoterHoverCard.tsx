@@ -70,7 +70,7 @@ export default function VoterHoverCard({
                 votingPower={!!delegate ? delegate.votingPower : "0"}
               />
               <p
-                className={`break-words text-gray-600 overflow-hidden line-clamp-2 text-ellipsis`}
+                className={`break-words text-secondary overflow-hidden line-clamp-2 text-ellipsis`}
               >
                 {truncatedStatement}
               </p>

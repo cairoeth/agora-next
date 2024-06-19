@@ -82,7 +82,7 @@ export const PanelRow = ({
     <HStack gap={2} className="justify-between items-center">
       <span className="whitespace-nowrap">{title}</span>
 
-      <span className="text-right text-sm text-theme-700">{detail}</span>
+      <span className="text-right text-sm text-secondary">{detail}</span>
     </HStack>
   );
 };
