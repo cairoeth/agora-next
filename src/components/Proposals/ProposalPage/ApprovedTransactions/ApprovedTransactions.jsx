@@ -27,7 +27,7 @@ export default function ApprovedTransactions({
   return (
     <div className="flex flex-col gap-1 border border-line rounded-lg bg-wash py-4">
       <div className="flex items-center justify-between px-4 mb-2">
-        <p className="font-mono text-xs font-medium leading-4 text-veil">
+        <p className="font-mono text-xs font-medium leading-4 text-tertiary">
           {isNoProposedTransactions ? "No " : ""}
           Proposed Transactions (signal only – transactions are manually
           executed by the Foundation)
@@ -48,7 +48,7 @@ export default function ApprovedTransactions({
             return (
               <>
                 {proposalType === "APPROVAL" && (
-                  <p className="font-mono text-xs font-medium leading-4 text-veil">
+                  <p className="font-mono text-xs font-medium leading-4 text-tertiary">
                     {"//"} {option.description}
                   </p>
                 )}
@@ -76,7 +76,7 @@ export default function ApprovedTransactions({
       )}
       {proposalData.options.length > 1 && (
         <div
-          className="cursor-pointer text-xs font-mono font-medium text-veil leading-4 p-4 pb-0 border-t border-line"
+          className="cursor-pointer text-xs font-mono font-medium text-tertiary leading-4 p-4 pb-0 border-t border-line"
           onClick={toggleElements}
         >
           {displayedOptions === 1
