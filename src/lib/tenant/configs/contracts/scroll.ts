@@ -7,31 +7,35 @@ import { scroll } from "viem/chains";
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
 import { AlchemyProvider } from "ethers";
 
-const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
+interface Props {
+  isProd: boolean;
+  alchemyId: string;
+}
 
 export const scrollTenantContractConfig = (
-  isProd: boolean,
+  { isProd, alchemyId }: Props,
 ): TenantContracts => {
+
   const TOKEN = "0xFe0c30065B384F05761f15d0CC899D4F9F9Cc0eB";
   const GOVERNOR = "0x0";
 
   const provider = new AlchemyProvider("scroll", alchemyId);
+  const chain = scroll;
 
   return {
     token: new TenantContract<ITokenContract>({
       abi: EtherfiToken__factory.abi,
       address: TOKEN as `0x${string}`,
-      chain: scroll,
+      chain,
       contract: EtherfiToken__factory.connect(TOKEN, provider),
       provider,
     }),
 
-    // TOOD: Replace this
     // PLACEHOLDER CONTRACT
     governor: new TenantContract<IGovernorContract>({
       abi: [],
       address: GOVERNOR,
-      chain: scroll,
+      chain,
       contract: OptimismGovernor__factory.connect(GOVERNOR, provider),
       provider,
     }),

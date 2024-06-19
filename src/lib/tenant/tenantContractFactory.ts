@@ -10,19 +10,19 @@ export default class TenantContractFactory {
   public static create(
     namespace: TenantNamespace,
     isProd: boolean,
+    alchemyId: string,
   ): TenantContracts {
     switch (namespace) {
       case TENANT_NAMESPACES.ETHERFI:
-        return etherfiTenantContractConfig(isProd);
+        return etherfiTenantContractConfig({ isProd, alchemyId });
       case TENANT_NAMESPACES.ENS:
-        return ensTenantContractConfig(isProd);
+        return ensTenantContractConfig({ isProd, alchemyId });
       case TENANT_NAMESPACES.OPTIMISM:
-        return optimismTenantContractConfig(isProd);
+        return optimismTenantContractConfig({ isProd, alchemyId });
       case TENANT_NAMESPACES.UNISWAP:
-        return uniswapTenantContractConfig(isProd);
+        return uniswapTenantContractConfig({ isProd, alchemyId });
       case TENANT_NAMESPACES.SCROLL:
-        return scrollTenantContractConfig(isProd);
-
+        return scrollTenantContractConfig({ isProd, alchemyId });
 
       default:
         throw new Error(`Invalid namespace: ${namespace}`);
