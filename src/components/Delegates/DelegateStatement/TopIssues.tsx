@@ -35,11 +35,11 @@ export default function TopIssues({
           return (
             <div
               key={index}
-              className="rounded-xl border border-gray-eb shadow-newDefault bg-white p-3"
+              className="rounded-xl border border-line shadow-newDefault bg-white p-3"
             >
               <HStack className="gap-4 items-start">
                 <VStack className="justify-center shrink-0">
-                  <VStack className="p-3 rounded-lg shadow-newDefault border border-gray-eb">
+                  <VStack className="p-3 rounded-lg shadow-newDefault border border-line">
                     <Image src={icons[issueDef.icon]} alt={issueDef.title} />
                   </VStack>
                 </VStack>
