@@ -273,52 +273,16 @@ export async function fetchAndSetAll<
 }
 
 export function getBlockScanAddress(address: string) {
+
   const { contracts } = Tenant.current();
-  const chainId = contracts.token.chain.id;
-  switch (chainId) {
-    case 1:
-      // Mainnet
-      return `https://etherscan.io/address/${address}`;
-
-    case 10:
-      // Optimism
-      return `https://optimistic.etherscan.io/address/${address}`;
-
-    case 11155111:
-      // Sepolia Ethereum
-      return `https://sepolia.etherscan.io/address/${address}`;
-
-    case 534352:
-      // Scroll
-      return `https://scrollscan.com/address/${address}`;
-
-    default:
-      return `https://etherscan.io/address/${address}`;
-  }
+  const url = contracts.token.chain.blockExplorers?.default.url;
+  return `${url}/io/${address}`;
 }
 
 export function getBlockScanUrl(hash: string | `0x${string}`) {
   const { contracts } = Tenant.current();
-  const chainId = contracts.token.chain.id;
-  switch (chainId) {
-    case 1:
-      return `https://etherscan.io/tx/${hash}`;
-
-    case 10:
-      // Optimism
-      return `https://optimistic.etherscan.io/tx/${hash}`;
-
-    case 11155111:
-      // Sepolia Ethereum
-      return `https://sepolia.etherscan.io/tx/${hash}`;
-
-    case 534352:
-      // Scroll
-      return `https://scrollscan.com/tx/${hash}`;
-
-    default:
-      return `https://etherscan.io/tx/${hash}`;
-  }
+  const url = contracts.token.chain.blockExplorers?.default.url;
+  return `${url}/tx/${hash}`;
 }
 
 export function timeout(ms: number) {
