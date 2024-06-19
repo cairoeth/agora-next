@@ -134,7 +134,7 @@ export function numberToToken(number: number) {
 export function formatNumber(
   amount: string | BigNumberish,
   decimals: number,
-  maximumSignificantDigits = 4
+  maximumSignificantDigits = 4,
 ) {
   const standardUnitAmount = Number(formatUnits(amount, decimals));
 
@@ -147,11 +147,11 @@ export function formatNumber(
 }
 
 export function TokenAmountDisplay({
-  amount,
-  decimals = token.decimals,
-  currency = token.symbol,
-  maximumSignificantDigits = 2,
-}: {
+                                     amount,
+                                     decimals = token.decimals,
+                                     currency = token.symbol,
+                                     maximumSignificantDigits = 2,
+                                   }: {
   amount: string | BigNumberish;
   decimals?: number;
   currency?: string;
@@ -167,7 +167,7 @@ export function TokenAmountDisplay({
 export function generateBarsForVote(
   forVotes: bigint,
   abstainVotes: bigint,
-  againstVotes: bigint
+  againstVotes: bigint,
 ) {
   const sections = [
     {
@@ -193,7 +193,7 @@ export function generateBarsForVote(
   // Sum of all votes using BigInt
   const totalVotes = sections.reduce(
     (acc, section) => BigInt(acc) + BigInt(section.amount),
-    BigInt(0)
+    BigInt(0),
   );
 
   if (totalVotes === BigInt(0)) {
@@ -216,7 +216,7 @@ export function generateBarsForVote(
     while (
       currentSection < sections.length - 1 &&
       BigInt(index) >= sections[currentSection].threshold
-    ) {
+      ) {
       currentSection++;
     }
     result[index] = sections[currentSection].value;
@@ -256,7 +256,7 @@ export function formatFullDate(date: Date): string {
 
 export async function fetchAndSet<T>(
   fetcher: () => Promise<T>,
-  setter: (value: T) => void
+  setter: (value: T) => void,
 ) {
   const value = await fetcher();
   setter(value);
@@ -276,16 +276,24 @@ export function getBlockScanAddress(address: string) {
   const { contracts } = Tenant.current();
   const chainId = contracts.token.chain.id;
   switch (chainId) {
+    case 1:
+      // Mainnet
+      return `https://etherscan.io/address/${address}`;
+
     case 10:
       // Optimism
       return `https://optimistic.etherscan.io/address/${address}`;
 
     case 11155111:
-      // Sepolia ETH
+      // Sepolia Ethereum
       return `https://sepolia.etherscan.io/address/${address}`;
 
+    case 534352:
+      // Scroll
+      return `https://scrollscan.com/address/${address}`;
+
     default:
-      return `https://etherscan.io/tx/${address}`;
+      return `https://etherscan.io/address/${address}`;
   }
 }
 
@@ -293,13 +301,20 @@ export function getBlockScanUrl(hash: string | `0x${string}`) {
   const { contracts } = Tenant.current();
   const chainId = contracts.token.chain.id;
   switch (chainId) {
+    case 1:
+      return `https://etherscan.io/tx/${hash}`;
+
     case 10:
       // Optimism
       return `https://optimistic.etherscan.io/tx/${hash}`;
 
     case 11155111:
-      // Sepolia ETH
+      // Sepolia Ethereum
       return `https://sepolia.etherscan.io/tx/${hash}`;
+
+    case 534352:
+      // Scroll
+      return `https://scrollscan.com/tx/${hash}`;
 
     default:
       return `https://etherscan.io/tx/${hash}`;

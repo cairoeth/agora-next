@@ -2,7 +2,7 @@ import { getDefaultProvider, AlchemyProvider } from "ethers";
 import { MulticallProvider, MulticallWrapper } from "ethers-multicall-provider";
 
 // TODO: Andrei - this needs to be refactored into a factory
-
+x
 declare global {
   var provider: MulticallProvider;
   var ethProvider: MulticallProvider;

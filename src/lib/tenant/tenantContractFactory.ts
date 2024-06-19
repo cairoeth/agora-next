@@ -4,11 +4,12 @@ import { ensTenantContractConfig } from "@/lib/tenant/configs/contracts/ens";
 import { etherfiTenantContractConfig } from "@/lib/tenant/configs/contracts/etherfi";
 import { optimismTenantContractConfig } from "@/lib/tenant/configs/contracts/optimism";
 import { uniswapTenantContractConfig } from "@/lib/tenant/configs/contracts/uniswap";
+import { scrollTenantContractConfig } from "@/lib/tenant/configs/contracts/scroll";
 
 export default class TenantContractFactory {
   public static create(
     namespace: TenantNamespace,
-    isProd: boolean
+    isProd: boolean,
   ): TenantContracts {
     switch (namespace) {
       case TENANT_NAMESPACES.ETHERFI:
@@ -19,6 +20,10 @@ export default class TenantContractFactory {
         return optimismTenantContractConfig(isProd);
       case TENANT_NAMESPACES.UNISWAP:
         return uniswapTenantContractConfig(isProd);
+      case TENANT_NAMESPACES.SCROLL:
+        return scrollTenantContractConfig(isProd);
+
+
       default:
         throw new Error(`Invalid namespace: ${namespace}`);
     }
