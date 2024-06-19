@@ -7,11 +7,8 @@ import { Delegate } from "@/app/api/common/delegates/delegate";
 export default function DelegateCard({ delegate }: { delegate: Delegate }) {
   return (
     <VStack className="sticky top-16 flex-shrink-0 width-[20rem]">
-      <VStack className="bg-white border border-theme-100 shadow-newDefault rounded-xl">
-        <VStack
-          alignItems="items-stretch"
-          className="p-6 border-b border-theme-100"
-        >
+      <VStack className="bg-white border border-line shadow-newDefault rounded-xl">
+        <VStack alignItems="items-stretch" className="p-6 border-b border-line">
           <DelegateProfileImage
             address={delegate.address}
             citizen={delegate.citizen}
