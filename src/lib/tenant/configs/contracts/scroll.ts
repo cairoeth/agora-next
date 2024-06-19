@@ -6,7 +6,6 @@ import { scroll } from "viem/chains";
 
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
 import { AlchemyProvider } from "ethers";
-import { Network } from "ethers/src.ts/providers/network";
 
 interface Props {
   isProd: boolean;
@@ -20,11 +19,11 @@ export const scrollTenantContractConfig = (
   const TOKEN = "0xFe0c30065B384F05761f15d0CC899D4F9F9Cc0eB";
   const GOVERNOR = "0x0";
 
-  const chain = scroll;
 
+  const chain = scroll;
   const provider = new AlchemyProvider({
-    chainId: chain.id,
-    name: chain.name,
+    name: "scroll",
+    chainId: 534352,
   }, alchemyId);
 
 

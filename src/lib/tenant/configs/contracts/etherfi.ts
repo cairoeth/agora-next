@@ -2,9 +2,9 @@ import { EtherfiToken__factory, OptimismGovernor__factory } from "@/lib/contract
 import { ITokenContract } from "@/lib/contracts/common/interfaces/ITokenContract";
 import { TenantContract } from "@/lib/tenant/tenantContract";
 import { TenantContracts } from "@/lib/types";
-import { mainnet } from "viem/chains";
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
 import { AlchemyProvider } from "ethers";
+import { mainnet } from "wagmi/chains";
 
 interface Props {
   isProd: boolean;
@@ -19,12 +19,14 @@ export const etherfiTenantContractConfig = (
   const GOVERNOR = "0x0";
 
   const provider = new AlchemyProvider("mainnet", alchemyId);
+  const chain = mainnet;
+
 
   return {
     token: new TenantContract<ITokenContract>({
       abi: EtherfiToken__factory.abi,
       address: TOKEN as `0x${string}`,
-      chain: mainnet,
+      chain,
       contract: EtherfiToken__factory.connect(TOKEN, provider),
       provider,
     }),
@@ -33,7 +35,7 @@ export const etherfiTenantContractConfig = (
     governor: new TenantContract<IGovernorContract>({
       abi: [],
       address: GOVERNOR,
-      chain: mainnet,
+      chain,
       contract: OptimismGovernor__factory.connect(GOVERNOR, provider),
       provider,
     }),
