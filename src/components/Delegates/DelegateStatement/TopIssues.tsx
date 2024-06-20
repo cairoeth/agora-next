@@ -24,7 +24,7 @@ export default function TopIssues({
 
   return (
     <VStack className="gap-4">
-      <h2 className="text-2xl font-bold">Top Issues</h2>
+      <h2 className="text-2xl font-bold text-primary">Top Issues</h2>
 
       <VStack className="gap-4">
         {topIssues.map((issue, index) => {
@@ -35,7 +35,7 @@ export default function TopIssues({
           return (
             <div
               key={index}
-              className="rounded-xl border border-line shadow-newDefault bg-white p-3"
+              className="rounded-xl border border-line shadow-newDefault bg-neutral p-3"
             >
               <HStack className="gap-4 items-start">
                 <VStack className="justify-center shrink-0">

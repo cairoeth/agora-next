@@ -94,7 +94,7 @@ export default function TopIssuesFormSection({
               className="gap-4 items-center"
               key={issue.type + index.toString()}
             >
-              <div className="flex justify-center items-center w-12 h-12 min-w-12 bg-white rounded-md border border-line shadow-newDefault p-2">
+              <div className="flex justify-center items-center w-12 h-12 min-w-12 bg-neutral rounded-md border border-line shadow-newDefault p-2">
                 <Image src={icons[issueDef.icon]} alt={issueDef.title} />
               </div>
 

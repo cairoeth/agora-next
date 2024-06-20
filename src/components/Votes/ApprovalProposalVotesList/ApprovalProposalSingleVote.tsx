@@ -52,7 +52,7 @@ export default function ApprovalProposalSingleVote({ vote }: { vote: Vote }) {
             justifyContent="justify-between"
             className="mb-2 text-xs leading-4"
           >
-            <div className="text-black font-semibold flex items-center">
+            <div className="text-primary font-semibold flex items-center">
               <HumanAddress address={voterAddress} />
               {address?.toLowerCase() === voterAddress && (
                 <span>&nbsp;(you)</span>

@@ -105,7 +105,7 @@ export default function DelegateCardList({
               <Link href={`/delegates/${delegate.address}`}>
                 <VStack
                   gap={4}
-                  className="h-full p-6 rounded-xl bg-white border border-line shadow-newDefault"
+                  className="h-full p-6 rounded-xl bg-neutral border border-line shadow-newDefault"
                 >
                   <VStack gap={4} justifyContent="justify-center">
                     <DelegateProfileImage
