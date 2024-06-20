@@ -55,7 +55,8 @@ type TenantUIParams = {
     veil?: string;
     positive?: string;
     negative?: string;
-    markup?: string;
+    accentPrimary?: string;
+    accentNeutral?: string;
   };
 };
 
@@ -71,16 +72,17 @@ export class TenantUI {
   private _title: string;
   private _toggles?: UIToggle[];
   private _customization?: {
-    theme50?: string;
-    theme100?: string;
-    theme200?: string;
-    theme300?: string;
-    theme400?: string;
-    theme500?: string;
-    theme600?: string;
-    theme700?: string;
-    theme800?: string;
-    theme900?: string;
+    primary?: string;
+    secondary?: string;
+    tertiary?: string;
+    neutral?: string;
+    wash?: string;
+    line?: string;
+    veil?: string;
+    positive?: string;
+    negative?: string;
+    accentPrimary?: string;
+    accentNeutral?: string;
   };
   private _linksCache: { [key: string]: UILink | undefined } = {};
   private _pagesCache: { [key: string]: UIPage | undefined } = {};
@@ -142,16 +144,17 @@ export class TenantUI {
 
   public get customization():
     | {
-        theme50?: string;
-        theme100?: string;
-        theme200?: string;
-        theme300?: string;
-        theme400?: string;
-        theme500?: string;
-        theme600?: string;
-        theme700?: string;
-        theme800?: string;
-        theme900?: string;
+        primary?: string;
+        secondary?: string;
+        tertiary?: string;
+        neutral?: string;
+        wash?: string;
+        line?: string;
+        veil?: string;
+        positive?: string;
+        negative?: string;
+        accentPrimary?: string;
+        accentNeutral?: string;
       }
     | undefined {
     return this._customization;
