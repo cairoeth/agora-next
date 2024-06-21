@@ -21,9 +21,14 @@ export default class Tenant {
   private readonly _ui: TenantUI;
 
   private constructor() {
-    this._namespace = process.env.NEXT_PUBLIC_AGORA_INSTANCE_NAME as TenantNamespace;
+    this._namespace = process.env
+      .NEXT_PUBLIC_AGORA_INSTANCE_NAME as TenantNamespace;
     this._isProd = process.env.NEXT_PUBLIC_AGORA_ENV === "prod";
-    this._contracts = TenantContractFactory.create(this._namespace, this._isProd, process.env.NEXT_PUBLIC_ALCHEMY_ID as string);
+    this._contracts = TenantContractFactory.create(
+      this._namespace,
+      this._isProd,
+      process.env.NEXT_PUBLIC_ALCHEMY_ID as string
+    );
     this._slug = TenantSlugFactory.create(this._namespace);
     this._token = TenantTokenFactory.create(this._namespace);
     this._ui = TenantUIFactory.create(this._namespace);

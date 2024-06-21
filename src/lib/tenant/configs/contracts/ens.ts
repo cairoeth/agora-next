@@ -1,4 +1,7 @@
-import { EtherfiToken__factory, OptimismGovernor__factory } from "@/lib/contracts/generated";
+import {
+  EtherfiToken__factory,
+  OptimismGovernor__factory,
+} from "@/lib/contracts/generated";
 import { ITokenContract } from "@/lib/contracts/common/interfaces/ITokenContract";
 import { TenantContract } from "@/lib/tenant/tenantContract";
 import { TenantContracts } from "@/lib/types";
@@ -11,7 +14,10 @@ interface Props {
   alchemyId: string;
 }
 
-export const ensTenantContractConfig = ({ isProd, alchemyId }: Props): TenantContracts => {
+export const ensTenantContractConfig = ({
+  isProd,
+  alchemyId,
+}: Props): TenantContracts => {
   const TOKEN = "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72";
   const GOVERNOR = "0x0";
 

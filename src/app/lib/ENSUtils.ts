@@ -6,14 +6,13 @@ import { AlchemyProvider } from "ethers";
 const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 const provider = new AlchemyProvider("mainnet", alchemyId);
 
-
 export async function resolveENSName(nameOrAddress: string) {
   if (isAddress(nameOrAddress)) {
     return nameOrAddress;
   }
 
   const address = await cache((name: string) => provider.resolveName(name))(
-    nameOrAddress,
+    nameOrAddress
   );
 
   if (!address) {
@@ -24,15 +23,13 @@ export async function resolveENSName(nameOrAddress: string) {
 }
 
 export async function reverseResolveENSName(
-  address: string,
+  address: string
 ): Promise<string | null> {
   try {
-
-    const ensName = await cache((address: string) => provider.lookupAddress(address))(
-      address,
-    );
+    const ensName = await cache((address: string) =>
+      provider.lookupAddress(address)
+    )(address);
     return ensName || null;
-
   } catch (error) {
     console.error("ENS Resolution Error", error);
     return null;
@@ -40,7 +37,7 @@ export async function reverseResolveENSName(
 }
 
 export async function resolveENSProfileImage(
-  address: string,
+  address: string
 ): Promise<string | null> {
   const lowerCaseAddress = address.toLowerCase();
 
@@ -52,10 +49,9 @@ export async function resolveENSProfileImage(
   }
 
   try {
-    return await cache((lowerCaseAddress: string) => provider.getAvatar(lowerCaseAddress))(
-      lowerCaseAddress,
-    );
-
+    return await cache((lowerCaseAddress: string) =>
+      provider.getAvatar(lowerCaseAddress)
+    )(lowerCaseAddress);
   } catch (error) {
     console.error("ENS Avatar error", error);
     return null;

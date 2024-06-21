@@ -13,7 +13,7 @@ const chainId = Tenant.current().contracts.token.chain.id;
  */
 export function getHumanBlockTime(
   blockNumber: number | string | bigint,
-  latestBlock: Block,
+  latestBlock: Block
 ) {
   switch (chainId) {
     // Optimism
@@ -28,25 +28,26 @@ export function getHumanBlockTime(
       const timeAfterBedrock =
         Math.min(
           Number(latestBlock.number) - Number(blockNumber),
-          Number(latestBlock.number) - bedrockBlockNumber,
+          Number(latestBlock.number) - bedrockBlockNumber
         ) * secondsPerBlock;
 
       return new Date(
-        (Date.now() / 1000 - timeBeforeBedrock - timeAfterBedrock) * 1000,
+        (Date.now() / 1000 - timeBeforeBedrock - timeAfterBedrock) * 1000
       );
 
     //   Scroll
     case 534352:
-      const estScrollSecondsDiff = (Number(latestBlock.number) - Number(blockNumber) * 3); // 3 seconds per block
-      return new Date(((latestBlock.timestamp) - estScrollSecondsDiff) * 1000);
-
+      const estScrollSecondsDiff =
+        Number(latestBlock.number) - Number(blockNumber) * 3; // 3 seconds per block
+      return new Date((latestBlock.timestamp - estScrollSecondsDiff) * 1000);
 
     //   Ethereum Mainnet
     //   Ethereum Sepolia
     case 1:
     case 11155111:
-      const estEthSecondsDiff = (Number(latestBlock.number) - Number(blockNumber) * 12); // 12 seconds per block
-      return new Date(((latestBlock.timestamp) - estEthSecondsDiff) * 1000);
+      const estEthSecondsDiff =
+        Number(latestBlock.number) - Number(blockNumber) * 12; // 12 seconds per block
+      return new Date((latestBlock.timestamp - estEthSecondsDiff) * 1000);
 
     default:
       return new Date();

@@ -10,7 +10,7 @@ export default class TenantContractFactory {
   public static create(
     namespace: TenantNamespace,
     isProd: boolean,
-    alchemyId: string,
+    alchemyId: string
   ): TenantContracts {
     switch (namespace) {
       case TENANT_NAMESPACES.ETHERFI:
