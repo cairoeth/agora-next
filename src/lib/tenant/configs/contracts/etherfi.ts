@@ -5,9 +5,9 @@ import {
 import { ITokenContract } from "@/lib/contracts/common/interfaces/ITokenContract";
 import { TenantContract } from "@/lib/tenant/tenantContract";
 import { TenantContracts } from "@/lib/types";
-import { mainnet, sepolia, scroll } from "viem/chains";
+import { mainnet, sepolia } from "viem/chains";
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
-import { AlchemyProvider, JsonRpcProvider } from "ethers";
+import { AlchemyProvider } from "ethers";
 
 interface Props {
   isProd: boolean;

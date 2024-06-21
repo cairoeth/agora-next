@@ -8,7 +8,7 @@ import { TenantContracts } from "@/lib/types";
 import { scroll } from "viem/chains";
 
 import { IGovernorContract } from "@/lib/contracts/common/interfaces/IGovernorContract";
-import { AlchemyProvider, JsonRpcProvider } from "ethers";
+import { JsonRpcProvider } from "ethers";
 
 interface Props {
   isProd: boolean;
@@ -19,11 +19,11 @@ export const scrollTenantContractConfig = ({
   isProd,
   alchemyId,
 }: Props): TenantContracts => {
-  const TOKEN = "0xFe0c30065B384F05761f15d0CC899D4F9F9Cc0eB";
+  const TOKEN = "0x5300000000000000000000000000000000000004";
   const GOVERNOR = "0x0";
 
   const provider = new JsonRpcProvider(
-    `https://eth-mainnet.g.alchemy.com/v2/${alchemyId}`
+    `https://scroll-mainnet.g.alchemy.com/v2/${alchemyId}`
   );
   const chain = scroll;
 
